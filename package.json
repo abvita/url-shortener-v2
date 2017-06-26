@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.6.4",
     "body-parser": "^1.17.2",
     "mongoose": "^4.10.4"
   }
