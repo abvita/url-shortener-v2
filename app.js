@@ -8,7 +8,7 @@ var config = require('./config');
 // grab the url model
 var Url = require('./models/url');
 // create a connection to our MongoDB
-mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
+mongoose.connect(process.env.MONGODB_URI);
 // handles JSON bodies
 app.use(bodyParser.json());
 // handles URL encoded bodies
@@ -79,6 +79,7 @@ app.get('/:encoded_id', function(req, res){
   });
 });
 
-var server = app.listen(5000, function(){
-  console.log('Server listening on port 5000');
-});
+var server = app.listen(process.env.PORT || 5000, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  }
