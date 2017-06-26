@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL Shortener</title>
+  <!-- Font -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link href="css/styles.css" rel="stylesheet">
+  <!-- JQuery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+  <!-- Angular Module Script -->
+  <script src='javascript/myApp.js'></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myController" ng-class="bgColor">
+  <div class="site-wrapper">
+    <div class="container">
+      <h1>URL Shortener</h1>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-centered">
+          <div class="input-group input-group-lg">
+            <input id="url-field" type="text" class="form-control" placeholder="Paste your link..." ng-model="urlData.long">
+            <span class="input-group-btn">
+              <button ng-click="shorten()" class="btn btn-shorten" type="button">SHORTEN</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row orig">
+        <div class="col-md-3 col-md-offset-2">
+            <h3>Original URL:</h3>
+        </div>
+        <div class="col-md-5">
+          <h3>{{ urlData.long }}</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3 col-md-offset-2">
+            <h3>New, tidy URL:</h3>
+        </div>
+        <div class="col-md-5">
+          <h3>{{ urlData.short }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
