@@ -6,20 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>URL Shortener</title>
   <!-- Font -->
-  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+  <!-- Font Awsome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <!-- Custom CSS -->
   <link href="css/styles.css" rel="stylesheet">
   <!-- JQuery -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <!-- Angular -->
+  <!-- AngularJS -->
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
-  <!-- Angular Module Script -->
+  <!-- AngularJS Module Script -->
   <script src='javascript/myApp.js'></script>
-
 </head>
-
 <body ng-app="myApp" ng-controller="myController" ng-class="bgColor">
   <div class="site-wrapper">
     <div class="container">
@@ -34,7 +34,6 @@
           </div>
         </div>
       </div>
-
       <div class="row orig">
         <div class="col-md-3 col-md-offset-2">
             <h3>Original URL:</h3>
@@ -43,7 +42,6 @@
           <h3>{{ urlData.long }}</h3>
         </div>
       </div>
-
       <div class="row">
         <div class="col-md-3 col-md-offset-2">
             <h3>New, tidy URL:</h3>
@@ -53,7 +51,11 @@
         </div>
       </div>
     </div>
+    <div class="row justify-content-center" id="git">
+      <div class="col">
+        <a href="https://github.com/abvita"><i class="fa fa-github" aria-hidden="true"></i></a>
+      </div>
+    </div>
   </div>
 </body>
-
 </html>

@@ -11,7 +11,7 @@ body {
 body {
   color: black;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Nunito', sans-serif;
   background: #FF6969;
 }
 
@@ -26,6 +26,11 @@ body {
 
 .orig {
   word-wrap: break-word;
+}
+
+#git a{
+  font-size: 60px;
+  color: black;
 }
 
 .oneBg,

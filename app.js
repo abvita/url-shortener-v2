@@ -5,15 +5,14 @@ var base58 = require('./base58.js');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./config');
-// grab the url model
 var Url = require('./models/url');
-// create a connection to our MongoDB
-mongoose.connect(process.env.MONGODB_URI);
-// handles JSON bodies
+//Db connection
+mongoose.connect(process.env.MONGODB_URI||"mongodb://alexa:dontforget@ds139082.mlab.com:39082/heroku_ksj3rbgg");
+//Handles JSON
 app.use(bodyParser.json());
-// handles URL encoded bodies
+//Handles URL encoding
 app.use(bodyParser.urlencoded({ extended: true }));
-// tell Express to serve files from our public folder
+//Directs express to serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 //EXPRESS ROUTES
@@ -26,36 +25,23 @@ app.get('/', function(req, res){
 app.post('/api/shorten', function(req, res){
   console.log(req.body.url);
   var longUrl = req.body.url;
-  var shortUrl = ''; // the shortened URL we will return
+  var shortUrl = '';
 
-  // check if url already exists in database
+  //Checks if given url already exists
   Url.findOne({long_url: longUrl}, function (err, doc){
     if (doc){
-      // URL has already been shortened
-      // base58 encode the unique _id of that document and construct the short URL
       shortUrl = config.webhost + base58.encode(doc._id);
-
-      // since the document exists, we return it without creating a new entry
       res.send({'shortUrl': shortUrl});
     } else {
-      // The long URL was not found in the long_url field in our urls
-      // collection, so we need to create a new entry
-
-      // The long URL was not found in the long_url field in our urls
-      // collection, so we need to create a new entry:
+      //If not, creates new db entry
       var newUrl = Url({
         long_url: longUrl
       });
-
-      // save the new link
       newUrl.save(function(err) {
         if (err){
           console.log(err);
         }
-
-        // construct the short URL
         shortUrl = config.webhost + base58.encode(newUrl._id);
-
         res.send({'shortUrl': shortUrl});
       });
     }
@@ -67,18 +53,18 @@ app.get('/:encoded_id', function(req, res){
   var base58Id = req.params.encoded_id;
   var id = base58.decode(base58Id);
 
-  // check if url already exists in database
+  //Checks if given url already exists
   Url.findOne({_id: id}, function (err, doc){
     if (doc) {
-      // found an entry in the DB, redirect the user to their destination
       res.redirect(doc.long_url);
     } else {
-      // nothing found, take 'em home
+      //If nothing found, directs back to index
       res.redirect(config.webhost);
     }
   });
 });
 
+//Starts Node server
 var server = app.listen(process.env.PORT || 5000, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
