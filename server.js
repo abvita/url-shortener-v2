@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'dist/url-shortener')));
 //EXPRESS ROUTES
 //Route to serve up the homepage (index.html)
 app.get('/', function(req, res){
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist/url-shortener/index.html'));
 });
 
 //Route to create and return a shortened URL given a long URL
