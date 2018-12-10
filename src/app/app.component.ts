@@ -28,8 +28,6 @@ export class AppComponent {
     this.http.post('/api/shorten', request).subscribe(
             (response: any) => {
               let resp = JSON.parse(response._body);
-              var resultHTML = '<a href="' + resp.shortUrl + '">'
-                  + resp.shortUrl + '</a>';
               this.urlData.short = resp.shortUrl;
           },
           (error: any) => {

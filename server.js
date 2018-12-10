@@ -56,7 +56,7 @@ app.get('/:encoded_id', function(req, res){
   Url.findOne({_id: id}, function (err, doc){
     if (doc) {
       console.log('found in db:', doc);
-      res.redirect(doc);
+      res.redirect(doc.long_url);
     } else {
       //If nothing found, directs back to index
       res.redirect(config.webhost);
