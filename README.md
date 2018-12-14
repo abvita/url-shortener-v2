@@ -6,19 +6,19 @@ A simple and easy URL shortener app built with Node, Express, Angular 7, and Mon
 * Run Mongo shell, and create app database:
 
 ```
-... use url_shortener
+use url_shortener
 ```
 
 * Initialize counters collection: 
 
 ```
-... db.counters.insert({ _id: 'url_count', seq: 1 })
+db.counters.insert({ _id: 'url_count', seq: 1 })
 ```
 
 * Start app:
 
 ```
-... npm start
+npm start
 ```
 
 ### Production:
@@ -28,5 +28,5 @@ A simple and easy URL shortener app built with Node, Express, Angular 7, and Mon
 * Start app:
 
 ```
-... npm start
+npm start
 ```
