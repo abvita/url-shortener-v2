@@ -9,7 +9,7 @@ var Url = require('./models/url');
 
 //Config for prod and local environments
 if (process.env.NODE_ENV === 'production'){
-  mongoose.connect(mongourl);
+  mongoose.connect(process.env.MONGODB_URI);
 }
 else{
   config.webhost = '';
@@ -17,8 +17,6 @@ else{
   mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
 }
 
-//Database connection
-mongoose.connect(process.env.MONGODB_URI);
 //Handles JSON
 app.use(bodyParser.json());
 //Handles URL encoding
