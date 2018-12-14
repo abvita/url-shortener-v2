@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Http, Response, Headers, RequestOptions } from '@angular/http'; 
+import { Http } from '@angular/http'; 
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,11 @@ export class AppComponent {
 
   constructor(private http: Http) { }
 
-  title = 'url-shortener';
   urlData = {
     long:'',
     short:''
   };
+
   //background color scope variables
   bgColor = '';
   colCount = 0;
@@ -45,6 +45,7 @@ export class AppComponent {
       }
   }
 
+  //formats provided URL
   formatUrl(data: any): any {
     if (data.toLowerCase().includes('http://') || data.toLowerCase().includes('https://')) {
       return data;

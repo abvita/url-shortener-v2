@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\" [ngClass]=\"bgColor\">\n  <h1>URL Shortener</h1>\n  <div class=\"row\">\n    <div class=\"col-md-8 col-md-offset-2 col-centered\">\n      <div class=\"input-group input-group-lg\">\n        <input id=\"url-field\" type=\"text\" class=\"form-control\" placeholder=\"Paste your link...\" [(ngModel)]=\"urlData.long\">\n        <span class=\"input-group-btn\">\n          <button (click)=\"shorten()\" class=\"btn btn-shorten\" type=\"button\">SHORTEN</button>\n        </span>\n      </div>\n    </div>\n  </div>\n  <div class=\"row orig\">\n    <div class=\"col-md-3 col-md-offset-1\">\n        <h3>Original URL:</h3>\n    </div>\n    <div class=\"col-md-5\">\n      <h3>{{ urlData.long }}</h3>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-3 col-md-offset-1\">\n        <h3>New, tidy URL:</h3>\n    </div>\n    <div class=\"col-md-6\">\n        <a id=\"shortlink\" href=\"{{urlData.short}}\" target=\"_blank\"><h3>{{ urlData.short }}  <i *ngIf=\"urlData.short.length > 0\" class=\"fas fa-external-link-alt\"></i></h3></a>\n    </div>\n  </div>\n  <div class=\"row justify-content-center\" id=\"git\">\n    <div class=\"col\">\n      <a href=\"https://github.com/abvita/url-shortener\" target=\"_blank\"><i class=\"fab fa-github\"></i></a>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"container\" [ngClass]=\"bgColor\">\n  <h1>URL Shortener</h1>\n  <div class=\"row\">\n    <div class=\"col-md-8 col-md-offset-2 col-centered\">\n      <div class=\"input-group input-group-lg\">\n        <input id=\"url-field\" type=\"text\" class=\"form-control\" placeholder=\"Paste your link...\" [(ngModel)]=\"urlData.long\">\n        <span class=\"input-group-btn\">\n          <button (click)=\"shorten()\" class=\"btn btn-shorten\" type=\"button\">SHORTEN</button>\n        </span>\n      </div>\n    </div>\n  </div>\n  <div class=\"row orig\">\n    <div class=\"col-md-3 col-md-offset-1\">\n        <h3>Original URL:</h3>\n    </div>\n    <div class=\"col-md-5\">\n      <h3>{{ urlData.long }}</h3>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-3 col-md-offset-1\">\n        <h3>New, tidy URL:</h3>\n    </div>\n    <div class=\"col-md-6\">\n        <a id=\"shortlink\" href=\"{{urlData.short}}\" target=\"_blank\"><h3>{{ urlData.short }}  <i *ngIf=\"urlData.short.length > 0\" class=\"fas fa-external-link-alt\"></i></h3></a>\n    </div>\n  </div>\n  <div class=\"row justify-content-center\" id=\"git\">\n    <div class=\"col\">\n      <a href=\"https://github.com/abvita/url-shortener-v2\" target=\"_blank\"><i class=\"fab fa-github\"></i></a>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -60,7 +60,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AppComponent = /** @class */ (function () {
     function AppComponent(http) {
         this.http = http;
-        this.title = 'url-shortener';
         this.urlData = {
             long: '',
             short: ''
@@ -78,8 +77,6 @@ var AppComponent = /** @class */ (function () {
         var request = { url: formattedUrl };
         this.http.post('/api/shorten', request).subscribe(function (response) {
             var resp = JSON.parse(response._body);
-            var resultHTML = '<a href="' + resp.shortUrl + '">'
-                + resp.shortUrl + '</a>';
             _this.urlData.short = resp.shortUrl;
         }, function (error) {
             console.log(error);
@@ -94,6 +91,7 @@ var AppComponent = /** @class */ (function () {
             this.bgColor = this.colorArr[this.colCount];
         }
     };
+    //formats provided URL
     AppComponent.prototype.formatUrl = function (data) {
         if (data.toLowerCase().includes('http://') || data.toLowerCase().includes('https://')) {
             return data;
@@ -228,7 +226,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/alexavita/Desktop/code/url-shortener/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/alexavita/Desktop/code/shortlnk/src/main.ts */"./src/main.ts");
 
 
 /***/ })

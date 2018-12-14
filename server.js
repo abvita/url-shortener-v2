@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var Url = require('./models/url');
 
-//Config for prod and local environments
+//Db config for prod and local environments
 if (process.env.NODE_ENV === 'production'){
   mongoose.connect(process.env.MONGODB_URI);
 }
@@ -17,31 +17,31 @@ else{
   mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
 }
 
-//Handles JSON
+//handles JSON
 app.use(bodyParser.json());
-//Handles URL encoding
+//handles URL encoding
 app.use(bodyParser.urlencoded({ extended: true }));
-//Directs express to serve static files from public folder
+//directs express to serve static files from public folder
 app.use(express.static(path.join(__dirname, 'dist/url-shortener')));
 
 //EXPRESS ROUTES
-//Route to serve up the homepage (index.html)
+//route to serve up the homepage (index.html)
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname, 'dist/url-shortener/index.html'));
 });
 
-//Route to create and return a shortened URL given a long URL
+//route to create and return a shortened URL given a long URL
 app.post('/api/shorten', function(req, res){
   var longUrl = req.body.url;
   var shortUrl = '';
 
-  //Checks if given url already exists
+  //checks if given url already exists
   Url.findOne({long_url: longUrl}, function (err, doc){
     if (doc){
       shortUrl = config.webhost + base58.encode(doc._id);
       res.send({'shortUrl': shortUrl});
     } else {
-      //If not, creates new db entry
+      //if not, creates new db entry
       var newUrl = Url({
         long_url: longUrl
       });
@@ -56,12 +56,12 @@ app.post('/api/shorten', function(req, res){
   });
 });
 
-//Route to redirect the visitor to their original URL given the short URL
+//route to redirect the visitor to their original URL given the short URL
 app.get('/:encoded_id', function(req, res){
   var base58Id = req.params.encoded_id;
   var id = base58.decode(base58Id);
 
-  //Checks if given url already exists
+  //checks if given url already exists
   Url.findOne({_id: id}, function (err, doc){
     if (doc) {
       console.log('found in db:', doc);
@@ -73,7 +73,7 @@ app.get('/:encoded_id', function(req, res){
   });
 });
 
-//Starts Node server
+//starts Node server
 var server = app.listen(process.env.PORT || 5000, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
