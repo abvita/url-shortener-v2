@@ -6,8 +6,19 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('./config');
 var Url = require('./models/url');
-//Db connection
-mongoose.connect(process.env.MONGODB_URI||"mongodb://alexa:dontforget@ds139082.mlab.com:39082/heroku_ksj3rbgg");
+
+//Config for prod and local environments
+if (process.env.NODE_ENV === 'production'){
+  mongoose.connect(mongourl);
+}
+else{
+  config.webhost = '';
+  config.db.host = 'localhost';
+  mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
+}
+
+//Database connection
+mongoose.connect(process.env.MONGODB_URI);
 //Handles JSON
 app.use(bodyParser.json());
 //Handles URL encoding
