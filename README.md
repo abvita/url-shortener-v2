@@ -1,4 +1,4 @@
-# shortlnk - MEAN Stack URL Shortenter
+# shrinkr - MEAN Stack URL Shortenter
 A simple and easy URL shortener app built with Node, Express, Angular 7, and MongoDB.
 
 ### To serve app locally:
