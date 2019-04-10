@@ -29,6 +29,7 @@ export class AppComponent {
             (response: any) => {
               let resp = JSON.parse(response._body);
               this.urlData.short = resp.shortUrl;
+              console.log(this.urlData);
           },
           (error: any) => {
             console.log(error);
