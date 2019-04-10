@@ -54,6 +54,8 @@ app.post('/api/shorten', function(req, res){
       });
     }
   });
+
+  console.log(shortUrl);
 });
 
 //route to redirect the visitor to their original URL given the short URL
