@@ -42,6 +42,8 @@ app.post('/api/shorten', function(req, res){
     if (doc){
       shortUrl = config.webhost + base58.encode(doc._id);
       res.send({'shortUrl': shortUrl});
+
+      console.log(shortUrl);
     } else {
       //if not, creates new db entry
       var newUrl = Url({
@@ -53,6 +55,8 @@ app.post('/api/shorten', function(req, res){
         }
         shortUrl = config.webhost + base58.encode(newUrl._id);
         res.send({'shortUrl': shortUrl});
+
+        console.log(shortUrl);
       });
     }
 
