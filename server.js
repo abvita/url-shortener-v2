@@ -33,7 +33,6 @@ app.get('/', function(req, res){
 
 //route to create and return a shortened URL given a long URL
 app.post('/api/shorten', function(req, res){
-  console.log('shorten post');
   var longUrl = req.body.url;
   var shortUrl = '';
 
@@ -42,8 +41,6 @@ app.post('/api/shorten', function(req, res){
     if (doc){
       shortUrl = config.webhost + base58.encode(doc._id);
       res.send({'shortUrl': shortUrl});
-
-      console.log(shortUrl);
     } else {
       //if not, creates new db entry
       var newUrl = Url({
@@ -55,20 +52,13 @@ app.post('/api/shorten', function(req, res){
         }
         shortUrl = config.webhost + base58.encode(newUrl._id);
         res.send({'shortUrl': shortUrl});
-
-        console.log(shortUrl);
       });
     }
-
-    console.log(shortUrl);
   });
-
-  console.log(shortUrl);
 });
 
 //route to redirect the visitor to their original URL given the short URL
 app.get('/:encoded_id', function(req, res){
-  console.log('get call');
   var base58Id = req.params.encoded_id;
   var id = base58.decode(base58Id);
 

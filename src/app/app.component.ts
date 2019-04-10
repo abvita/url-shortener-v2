@@ -29,7 +29,6 @@ export class AppComponent {
             (response: any) => {
               let resp = JSON.parse(response._body);
               this.urlData.short = resp.shortUrl;
-              console.log(this.urlData);
           },
           (error: any) => {
             console.log(error);
@@ -44,8 +43,6 @@ export class AppComponent {
           this.colCount = 0;
           this.bgColor = this.colorArr[this.colCount];
       }
-
-      console.log(this.urlData);
   }
 
   //formats provided URL
