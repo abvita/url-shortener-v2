@@ -27,11 +27,13 @@ app.use(express.static(path.join(__dirname, 'dist/url-shortener')));
 //EXPRESS ROUTES
 //route to serve up the homepage (index.html)
 app.get('/', function(req, res){
+  console.log('get path');
   res.sendFile(path.join(__dirname, 'dist/url-shortener/index.html'));
 });
 
 //route to create and return a shortened URL given a long URL
 app.post('/api/shorten', function(req, res){
+  console.log('shorten post');
   var longUrl = req.body.url;
   var shortUrl = '';
 
@@ -53,6 +55,8 @@ app.post('/api/shorten', function(req, res){
         res.send({'shortUrl': shortUrl});
       });
     }
+
+    console.log(shortUrl);
   });
 
   console.log(shortUrl);
@@ -60,6 +64,7 @@ app.post('/api/shorten', function(req, res){
 
 //route to redirect the visitor to their original URL given the short URL
 app.get('/:encoded_id', function(req, res){
+  console.log('get call');
   var base58Id = req.params.encoded_id;
   var id = base58.decode(base58Id);
 
