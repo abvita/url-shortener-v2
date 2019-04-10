@@ -2,8 +2,8 @@
 var config = {};
 
 config.db = {};
-config.webhost = 'https://shortlnk.herokuapp.com/';
-config.db.host = 'shortlnk.herokuapp';
+config.webhost = 'shrinkr.me/';
+config.db.host = 'shrinkr.me';
 config.db.name = 'url_shortener';
 
 module.exports = config;
