@@ -43,6 +43,8 @@ export class AppComponent {
           this.colCount = 0;
           this.bgColor = this.colorArr[this.colCount];
       }
+
+      console.log(this.urlData);
   }
 
   //formats provided URL
