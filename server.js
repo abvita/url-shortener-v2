@@ -8,7 +8,7 @@ var config = require('./config');
 var Url = require('./models/url');
 
 //Db config for prod and local environments
-if (process.env.NODE_ENV === 'production'){
+if (process.env.NODE_ENV == 'production'){
   mongoose.connect(process.env.MONGODB_URI + '?authSource=admin');
 }
 else{
