@@ -21,7 +21,7 @@
         <input id="url-field" type="text" class="form-control" placeholder="Paste your link..."
           [(ngModel)]="urlData.long">
         <span class="input-group-btn">
-          <button (click)="shorten()" class="btn btn-shorten btn-success" type="button">SHRINK</button>
+          <button (click)="shorten()" class="btn btn-shorten btn-success" type="button" [disabled]="urlData.long.length === 0">SHRINK</button>
         </span>
       </div>
     </div>
