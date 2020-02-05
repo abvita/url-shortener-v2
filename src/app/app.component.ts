@@ -27,6 +27,7 @@ export class AppComponent {
     let request = {url: formattedUrl};
     this.http.post('/api/shorten', request).subscribe(
             (response: any) => {
+              console.log('shorten api response:', response);
               let resp = JSON.parse(response._body);
               this.urlData.short = 'shrinkr.me/'+ resp.shortUrl;
           },
@@ -43,6 +44,7 @@ export class AppComponent {
           this.colCount = 0;
           this.bgColor = this.colorArr[this.colCount];
       }
+    console.log(this.urlData);
   }
 
   //formats provided URL
