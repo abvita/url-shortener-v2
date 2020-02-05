@@ -28,7 +28,7 @@ export class AppComponent {
     this.http.post('/api/shorten', request).subscribe(
             (response: any) => {
               let resp = JSON.parse(response._body);
-              this.urlData.short = resp.shortUrl;
+              this.urlData.short = 'shrinkr.me/'+ resp.shortUrl;
           },
           (error: any) => {
             console.log(error);

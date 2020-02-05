@@ -8,11 +8,11 @@ var config = require('./config');
 var Url = require('./models/url');
 
 //Db config for prod and local environments
-if (process.env.NODE_ENV == 'production'){
+if (process.env.NODE_ENV === 'production'){
   mongoose.connect(process.env.MONGODB_URI + '?authSource=admin');
 }
 else{
-  config.webhost = 'shrinkr.me/';
+  config.webhost = '';
   config.db.host = 'localhost';
   mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
 }
