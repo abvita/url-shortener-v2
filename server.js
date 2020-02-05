@@ -12,7 +12,7 @@ if (process.env.NODE_ENV == 'production'){
   mongoose.connect(process.env.MONGODB_URI + '?authSource=admin');
 }
 else{
-  config.webhost = '';
+  config.webhost = 'shrinkr.me/';
   config.db.host = 'localhost';
   mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
 }
